@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "39928037334",
+    "project_id": "jam3naapp2021",
+    "storage_bucket": "jam3naapp2021.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39928037334:android:1862bf1356cc90b1a46e77",
+        "android_client_info": {
+          "package_name": "com.example.jam3naapp2021"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39928037334-fvdt2g6cmtk0cr6keq15um7ceoho36ct.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyADAi0IqmfBv8_fi-LkA6CfVxoJ-apGLGw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39928037334-fvdt2g6cmtk0cr6keq15um7ceoho36ct.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
