@@ -108,38 +108,42 @@
     <Button
         android:id="@+id/btnFacebook"
         android:layout_width="130dp"
-        android:backgroundTint="@color/white"
         android:layout_height="45dp"
-        android:layout_marginEnd="60dp"
+        android:layout_marginEnd="56dp"
         android:background="@drawable/btn_bg"
+        android:backgroundTint="@color/white"
         android:drawableLeft="@drawable/ic_facebook"
         android:drawablePadding="10dp"
         android:paddingLeft="5dp"
         android:text="Facebook"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="@+id/btnGoogle"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.266" />
 
     <Button
-        android:id="@+id/btnGoogle"
-        android:layout_width="133dp"
+       android:id="@+id/SigninGoogle"
+       android:layout_width="133dp"
         android:layout_height="44dp"
-        android:layout_marginStart="40dp"
+       android:layout_marginStart="40dp"
         android:layout_marginEnd="8dp"
         android:background="@drawable/btn_bg"
-        android:drawableLeft="@drawable/ic_google"
-        android:drawablePadding="10dp"
+       android:drawableLeft="@drawable/ic_google"
+       android:drawablePadding="10dp"
         android:paddingLeft="20dp"
         android:text="Google"
         android:textAlignment="textStart"
         android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/btnFacebook"
         app:layout_constraintHorizontal_bias="0.891"
-        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.271" />
+       app:layout_constraintVertical_bias="0.271" />
+
+
 
     <ProgressBar
         android:id="@+id/progressBar2"

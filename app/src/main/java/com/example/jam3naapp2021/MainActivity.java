@@ -2,12 +2,19 @@ package com.example.jam3naapp2021;
 
 import android.content.ClipData;
 import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
@@ -26,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     private AppBarConfiguration mAppBarConfiguration;
     View logOut;
+    TextView username,useremail;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,13 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
         FloatingActionButton logouBtn = findViewById(R.id.action_logout);
+//        useremail=(TextView)findViewById(R.id.UserEmail);
+//        username=(TextView)findViewById(R.id.UserName);
+//        String getusername=fAuth.getCurrentUser().getDisplayName().toString();
+//        String getuseremail=fAuth.getCurrentUser().getEmail().toString();
+//        username.setText(""+getusername.trim());
+//        useremail.setText(""+getuseremail.trim());
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,7 +100,19 @@ public class MainActivity extends AppCompatActivity {
 //                return true;
             case R.id.action_logout:
                 fAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                GoogleSignIn.getClient(this,new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN).build())
+                        .signOut().addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Toast.makeText(MainActivity.this,"Sginout Failed",Toast.LENGTH_SHORT).show();
+                    }
+                });
+
                 return true;
 //            case R.id.CreateGroup:
 //                startActivity(new Intent(getApplicationContext(),CreateGroupController.class));
