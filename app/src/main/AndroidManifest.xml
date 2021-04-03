@@ -11,7 +11,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Jam3naApp2021">
-        <activity android:name=".PorfileActivity"></activity>
         <activity android:name=".forgetpasswordActivity"></activity>
         <activity
             android:name=".MainActivity"
