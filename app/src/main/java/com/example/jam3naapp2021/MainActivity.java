@@ -114,9 +114,9 @@ public class MainActivity extends AppCompatActivity {
                 });
 
                 return true;
-//            case R.id.CreateGroup:
-//                startActivity(new Intent(getApplicationContext(),CreateGroupController.class));
-//                return true;
+            case R.id.action_create:
+                startActivity(new Intent(getApplicationContext(),CreateGroupController.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 

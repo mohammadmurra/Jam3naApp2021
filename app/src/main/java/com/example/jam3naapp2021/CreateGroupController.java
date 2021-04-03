@@ -2,8 +2,8 @@ package com.example.jam3naapp2021;
 
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.icu.util.TimeZone;
 import android.net.Uri;
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
@@ -17,12 +17,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -30,6 +30,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.lang.ref.Reference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,13 +47,14 @@ public class CreateGroupController extends AppCompatActivity {
     ImageView GroupPic;
     StorageReference mStorgeRef;
     Uri selectedImageUri;
+    String imageId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_group);
         fAuth = FirebaseAuth.getInstance();
-        mStorgeRef= FirebaseStorage.getInstance().getReference("Images");
+        mStorgeRef=FirebaseStorage.getInstance().getReference("Images");
         progressBar = findViewById(R.id.progressBar2);
         InsBtn = findViewById(R.id.ins_pic);
         createBtn = findViewById(R.id.createBtn);
@@ -61,12 +63,12 @@ public class CreateGroupController extends AppCompatActivity {
         admin_Id = findViewById(R.id.adminId);
         GroupCate = findViewById(R.id.groupCategroy);
         GroupPic=findViewById(R.id.imageView);
-      //  admin_Id.setText("mohammad");
+        //  admin_Id.setText("mohammad");
 
 
         createBtn.setOnClickListener(e -> {
             create_group_method();
-           // upload_group_image();
+            upload_group_image();
         });
         InsBtn.setOnClickListener(e->{
             imageChooser();
@@ -76,51 +78,45 @@ public class CreateGroupController extends AppCompatActivity {
     }
     private String getExtension(Uri uri) {
         ContentResolver cr=getContentResolver();
-        MimeTypeMap mimetypemap= MimeTypeMap.getSingleton();
+        MimeTypeMap mimetypemap=MimeTypeMap.getSingleton();
         return mimetypemap.getExtensionFromMimeType(cr.getType(uri));
 
     }
 
     private void upload_group_image() {
-            StorageReference Ref = mStorgeRef.child(System.currentTimeMillis() + "." + getExtension(selectedImageUri));
-            Ref.putFile(selectedImageUri)
-                    .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+        imageId=fAuth.getCurrentUser().getUid()+System.currentTimeMillis();
+        StorageReference Ref = mStorgeRef.child(imageId+ "." + getExtension(selectedImageUri));
+        Ref.putFile(selectedImageUri)
+                .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
                     public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
-                        Toast.makeText(com.example.jam3naapp2021.CreateGroupController.this, "Image Uploaded successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateGroupController.this, "Image Uploaded successfully.", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(com.example.jam3naapp2021.CreateGroupController.this, "Image Uploaded failed.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateGroupController.this, "Image Uploaded failed.", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
 
 
-    @RequiresApi(api = Build.VERSION_CODES.O)
     private void create_group_method() {
         String TAG = null;
-        String Picurl;
         String Group_desc = GroupDesc.getText().toString();
         String Group_name = GroupName.getText().toString();
         String Group_adminid = admin_Id.getText().toString();
         String GroupCategory = GroupCate.getSelectedItem().toString();
-         Picurl= DocumentSnapshot.class.getCanonicalName();
-        Log.d("ID pic",Picurl);
-        Picurl= DocumentSnapshot.class.getSimpleName();
-        Log.d("ID pic1",Picurl);
-        Picurl= DocumentSnapshot.class.getTypeName();
-        Log.d("ID pic2",Picurl);
-        Picurl= DocumentSnapshot.class.toGenericString();
-        Log.d("ID pic3",Picurl);
+
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> group = new HashMap<>();
+        group.put("imageUrl",imageId+"");
         group.put("Group Name", Group_name);
         group.put("Group Desciption", Group_desc);
-        group.put("Admin ID","mohammad");
+        group.put("Admin ID",fAuth.getCurrentUser().getDisplayName());
         group.put("Group Category", GroupCategory);
+
 
 
 
@@ -134,7 +130,7 @@ public class CreateGroupController extends AppCompatActivity {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
                         Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                        Toast.makeText(com.example.jam3naapp2021.CreateGroupController.this, "added successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateGroupController.this, "added successfully.", Toast.LENGTH_SHORT).show();
                     }
                 })
 
@@ -142,7 +138,7 @@ public class CreateGroupController extends AppCompatActivity {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         Log.w(TAG, "Error adding document", e);
-                        Toast.makeText(com.example.jam3naapp2021.CreateGroupController.this, "not added successfully.", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(CreateGroupController.this, "not added successfully.", Toast.LENGTH_SHORT).show();
 
                     }
                 });
@@ -173,7 +169,7 @@ public class CreateGroupController extends AppCompatActivity {
             // SELECT_PICTURE constant
             if (requestCode == SELECT_PICTURE) {
                 // Get the url of the image from data
-                 selectedImageUri = data.getData();
+                selectedImageUri = data.getData();
                 if (null != selectedImageUri) {
                     // update the preview image in the layout
                     GroupPic.setImageURI(selectedImageUri);
@@ -184,8 +180,8 @@ public class CreateGroupController extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-//            case R.id.profile:
-//                startActivity(new Intent(getApplicationContext(), PorfileActivity.class));
+//            case R.id.a:
+//                startActivity(new Intent(getApplicationContext(), profileController.class));
 //                return true;
             case R.id.action_settings:
                 Toast.makeText(this, " settings not ready yet !", Toast.LENGTH_SHORT).show();
@@ -194,9 +190,9 @@ public class CreateGroupController extends AppCompatActivity {
                 fAuth.getInstance().signOut();
                 startActivity(new Intent(getApplicationContext(), LoginActivity.class));
                 return true;
-//            case R.id.CreateGroup:
-//                startActivity(new Intent(getApplicationContext(), com.example.jam3naapp2021.CreateGroupController.class));
-//                return true;
+            case R.id.action_create:
+                startActivity(new Intent(getApplicationContext(), CreateGroupController.class));
+                return true;
             default:
                 return super.onOptionsItemSelected(item);
 
