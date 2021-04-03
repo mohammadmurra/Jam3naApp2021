@@ -44,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     TextView CreateUser;
-   //SignInButton Signingoogle;
+    //SignInButton Signingoogle;
     private GoogleSignInClient mGoogleSignInClient;
     GoogleSignInOptions gsc;
     GoogleSignInClient signInClient;
@@ -84,7 +84,7 @@ public class LoginActivity extends AppCompatActivity {
         signInClient=GoogleSignIn.getClient(this,gsc);
         GoogleSignInAccount signInAccount=GoogleSignIn.getLastSignedInAccount(this);
         if(signInAccount != null || fAuth.getCurrentUser() !=null){
-          startActivity(new Intent(this,MainActivity.class));
+            startActivity(new Intent(this,MainActivity.class));
         }
         Signingoogle.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -245,7 +245,3 @@ public class LoginActivity extends AppCompatActivity {
 
 
 }
-
-
-
-

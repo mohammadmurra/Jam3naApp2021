@@ -1,6 +1,5 @@
 package com.example.jam3naapp2021;
 
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -16,14 +15,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.example.jam3naapp2021.LoginActivity;
-import com.example.jam3naapp2021.R;
+import com.example.jam3naapp2021.ui.gallery.GalleryFragment;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
@@ -32,17 +29,15 @@ import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
     public static final String TAG = "TAG";
-    EditText FirstName, mEmail, mPassword, mPhone, LastName, Password;
+    EditText FirstName,mEmail,mPassword,mPhone,LastName,Password;
     Button mRegisterBtn;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
     FirebaseFirestore fStore;
-    TextView LoginUser;
-    String VisitorID;
-    ProgressDialog progressDialog;
+    TextView LoginUser ;
+    String VisitorID ;
 
     @Override
-
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
@@ -59,11 +54,10 @@ public class RegisterActivity extends AppCompatActivity {
         fAuth = FirebaseAuth.getInstance();
         fStore = FirebaseFirestore.getInstance();
         progressBar = findViewById(R.id.progressBar);
-        progressDialog = new ProgressDialog(this);
-        progressDialog.setMessage("Resistering User...");
+
 
         if(fAuth.getCurrentUser() != null){
-            startActivity(new Intent(getApplicationContext(), RegisterActivity.class));
+            startActivity(new Intent(getApplicationContext(), GalleryFragment.class));
             finish();
         }
 
@@ -101,33 +95,29 @@ public class RegisterActivity extends AppCompatActivity {
                 mPassword.setError("Password Must be more than 6 Characters");
                 return;
             }
-            progressDialog.show();
+
             fAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-                        progressDialog.dismiss();
                         Toast.makeText(RegisterActivity.this, "User Created.", Toast.LENGTH_SHORT).show();
 
-                        FirebaseUser user =fAuth.getCurrentUser();
-//                         DocumentReference documentReference = fStore.collection("Visitor").document(VisitorID);
-                        Toast.makeText(RegisterActivity.this,"Regesterd...\n"+user.getEmail(),Toast.LENGTH_LONG).show();
-                      
+                        VisitorID = fAuth.getCurrentUser().getUid();
+                        DocumentReference documentReference = fStore.collection("Visitor").document(VisitorID);
                         Map<String, Object> visitor = new HashMap<>();
                         visitor.put("fname", UserfirstName);
                         visitor.put("lname", UserLastName);
                         visitor.put("Uphone", phoneNumber);
                         visitor.put("Uemail", email);
-//                        documentReference.set(visitor).addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                        Log.d(TAG, "onSuccess: user Profile is created for " + VisitorID);
-//                        }
-//                        });
+                        documentReference.set(visitor).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Log.d(TAG, "onSuccess: user Profile is created for " + VisitorID);
+                            }
+                        });
                         startActivity(new Intent(getApplicationContext(), MainActivity.class));
                     }
                     else{
-                        progressDialog.dismiss();
                         Toast.makeText(RegisterActivity.this, "Error ! " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         progressBar.setVisibility(View.GONE);
 
@@ -146,7 +136,5 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 }
-
-
 
 

@@ -18,8 +18,13 @@
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.example.jam3naapp2021.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_friendlist"
+        android:name="com.example.jam3naapp2021.ui.Friendlist.FrinedlstFragment"
+        android:label="@string/menu_friendlist"
+        tools:layout="@layout/fragment_friendlist" />
+    <fragment
+        android:id="@+id/nav_group"
+        android:name="com.example.jam3naapp2021.ui.group.GroupFragment"
+        android:label="@string/menu_grup"
+        tools:layout="@layout/fragment_group" />
 </navigation>
