@@ -4,15 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.gallery.GalleryFragment">
-
+    android:background="@drawable/gard2"
+    tools:context="com.halo.profileui.Activity_Main">
 
     <RelativeLayout
         android:id="@+id/rellay1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
-        android:paddingBottom="0dp">
+        android:background="@drawable/grad"
+        android:paddingBottom="20dp">
 
         <RelativeLayout
             android:id="@+id/imgUser"
@@ -20,46 +20,36 @@
             android:layout_height="wrap_content"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="20dp"
-           >
+            android:background="@drawable/circle_border">
 
             <ImageView
-                android:id="@+id/profileImageView"
                 android:layout_width="120dp"
                 android:layout_height="120dp"
                 android:layout_margin="9dp"
                 android:adjustViewBounds="true"
-
+                android:background="@drawable/circle"
                 android:padding="3dp"
                 android:scaleType="centerInside"
                 android:src="@drawable/ic_person" />
 
         </RelativeLayout>
 
-        <EditText
-            android:id="@+id/profileFirstUsername"
-            android:layout_width="205dp"
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@+id/imgUser"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="15sp"
             android:fontFamily="sans-serif-light"
-            android:hint="User Name"
-            android:textColor="@color/black"
-            android:textSize="32sp"
-            android:textStyle="bold" />
+            android:text="Mohammad Abumurra"
+            android:textColor="@color/white"
+            android:textSize="32sp" />
 
 
-        <EditText
-            android:id="@+id/profileLastUsername"
-            android:layout_width="195dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/profileFirstUsername"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="0dp"
-            android:fontFamily="sans-serif"
-            android:textColor="@color/black"
-            android:textSize="20dp"
-            android:textStyle="bold" />
+
+
+
 
     </RelativeLayout>
 
@@ -75,7 +65,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-
+            android:background="@color/followersBg"
             android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
@@ -90,19 +80,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Height"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:text="173cm"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
 
-                <EditText
-                    android:id="@+id/UserHeight"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="Your Height"
-                    android:inputType="text|number"
+                    android:fontFamily="sans-serif-light"
+                    android:text="Length"
                     android:textAllCaps="true"
-
-                    android:textSize="13dp" />
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -113,7 +102,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_weight="1"
-
+            android:background="@color/followingBg"
             android:gravity="center"
             android:paddingBottom="5dp"
             android:paddingTop="5dp">
@@ -128,20 +117,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Weight"
-                    android:textColor="@color/black"
-                    android:textSize="20dp" />
+                    android:text="64.5kg"
+                    android:textColor="@color/white"
+                    android:textSize="25sp" />
 
-                <EditText
-                    android:id="@+id/UserWeight"
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="sans-serif-light"
-                    android:text="Your Weight"
-                    android:inputType="text|number"
+                    android:text="weight"
                     android:textAllCaps="true"
-                    android:textColor="@color/black"
-                    android:textSize="13dp" />
+                    android:textColor="@color/white"
+                    android:textSize="13sp" />
 
             </LinearLayout>
 
@@ -153,14 +140,16 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_below="@+id/linlay1">
+        android:layout_below="@+id/linlay1"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="-70dp">
 
         <LinearLayout
-            android:layout_width="381dp"
-            android:layout_height="334dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_centerInParent="true"
             android:layout_marginLeft="30dp"
-            android:layout_marginTop="3dp"
+            android:layout_marginTop="20dp"
             android:layout_marginRight="30dp"
             android:orientation="vertical">
 
@@ -172,161 +161,151 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="   Email"
-                    android:textColor="@color/black"
-
-                    android:textSize="15dp" />
-
-                <EditText
-                    android:id="@+id/profileEmail"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:inputType="textEmailAddress"
-                    android:hint="User Email"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:orientation="vertical">
+                    android:text="Email"
+                    android:textColor="@color/white"
+                    android:textColorHint="#ECE3E3"
+                    android:textSize="18sp" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Phone Number"
-
-                    android:textColor="@color/black"
-                    android:textSize="15dp" />
-
-                <EditText
-                    android:id="@+id/profilePhoneNumber"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPhonetic"
                     android:fontFamily="sans-serif-light"
-                    android:hint="User Phone"
-                    android:textColor="@color/black"
-                    android:textSize="18dp" />
+                    android:text="mabumurra@gmail.com"
+                    android:textColor="#FFFFFF"
+                    android:textSize="18sp"
+                    app:strokeColor="@color/black" />
 
                 <View
                     android:layout_width="match_parent"
                     android:layout_height="1dp"
-                    android:layout_marginTop="5dp"
-                    />
+                    android:layout_marginTop="15dp"
+                    android:background="@color/grey" />
 
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="  Age"
-
-                    android:textColor="@color/black"
-                    android:textSize="13dp" />
-
-                <EditText
-                    android:id="@+id/UserAge"
-                    android:inputType="text|number"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:hint="User Age"
-                    android:textColor="#000000"
-                    android:textSize="18dp" />
-
-                <View
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="3dp"
-                     />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="1dp"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="  Gender "
-               />/     android:drawableLeft="@drawable/ic_age"
-                    android:textColor="@color/black"
-                    android:textSize="13dp"
-                    />
-                <RadioGroup
-                    android:id="@+id/gender"
-                    android:layout_width="330dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginTop="15dp"
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/Female"
-                        android:layout_marginRight="80dp"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Female"
-                  />/      android:onClick="checkBoxGender"
-                        android:checked="true"
-                        />
+                        android:text="Phone"
+                        android:textColor="@color/white"
+                        android:textColorHint="#ECE3E3"
+                        android:textSize="18sp" />
 
-                    <RadioButton
-                        android:id="@+id/male"
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                     />/   android:onClick="checkBoxGender"
-                        android:text="Male" />
+                        android:fontFamily="sans-serif-light"
+                        android:text="+972568085611"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
 
-                </RadioGroup>
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginTop="1dp"
-                   />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginTop="15dp"
+                        android:background="@color/grey" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="15dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Date Of Birth"
+                            android:textColor="@color/white"
+                            android:textColorHint="#ECE3E3"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-light"
+                            android:text="25/12/1998"
+                            android:textColor="#FFFFFF"
+                            android:textSize="18sp" />
+
+                        <View
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginTop="15dp"
+                            android:background="@color/grey" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="15dp"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Gender"
+                                android:textColor="@color/white"
+                                android:textColorHint="#ECE3E3"
+                                android:textSize="18sp" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:text="Male"
+                                android:textColor="#FFFFFF"
+                                android:textSize="18sp" />
+
+                            <View
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="15dp"
+                                android:background="@color/grey" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginTop="15dp"
+                                android:orientation="vertical">
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="Location"
+                                    android:textColor="@color/white"
+                                    android:textColorHint="#ECE3E3"
+                                    android:textSize="18sp" />
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:fontFamily="sans-serif-light"
+                                    android:text="Ramallah"
+                                    android:textColor="#FFFFFF"
+                                    android:textSize="18sp" />
+
+                                <View
+                                    android:layout_width="match_parent"
+                                    android:layout_height="1dp"
+                                    android:layout_marginTop="15dp"
+                                    android:background="@color/grey" />
+
+                            </LinearLayout>
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="5dp"
-                android:orientation="horizontal"
-                >
-
-                <Button
-                    android:id="@+id/saveProfileInfo"
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="sans-serif-light"
-                    android:text="Save"
-                    android:textAlignment="center"
-                    android:layout_marginStart="90dp"
-                    android:textColor="#000000"
-                    android:textSize="18dp" />
-
-
-            </LinearLayout>
 
         </LinearLayout>
 
     </RelativeLayout>
+
 </RelativeLayout>

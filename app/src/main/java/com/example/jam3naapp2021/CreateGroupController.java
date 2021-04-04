@@ -2,7 +2,6 @@ package com.example.jam3naapp2021;
 
 import android.content.ContentResolver;
 import android.content.Intent;
-import android.icu.util.TimeZone;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,15 +21,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
-import java.lang.ref.Reference;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -44,7 +40,7 @@ public class CreateGroupController extends AppCompatActivity {
     Spinner GroupCate;
     TextView admin_Id;
     int SELECT_PICTURE = 200;
-    ImageView GroupPic;
+    ImageView GroupPic,test;
     StorageReference mStorgeRef;
     Uri selectedImageUri;
     String imageId;
@@ -54,7 +50,9 @@ public class CreateGroupController extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.create_group);
         fAuth = FirebaseAuth.getInstance();
+
         mStorgeRef=FirebaseStorage.getInstance().getReference("Images");
+
         progressBar = findViewById(R.id.progressBar2);
         InsBtn = findViewById(R.id.ins_pic);
         createBtn = findViewById(R.id.createBtn);
@@ -62,7 +60,8 @@ public class CreateGroupController extends AppCompatActivity {
         GroupName = findViewById(R.id.groupNameText);
         admin_Id = findViewById(R.id.adminId);
         GroupCate = findViewById(R.id.groupCategroy);
-        GroupPic=findViewById(R.id.imageView);
+        GroupPic=findViewById(R.id.ProfileImage);
+
         //  admin_Id.setText("mohammad");
 
 
