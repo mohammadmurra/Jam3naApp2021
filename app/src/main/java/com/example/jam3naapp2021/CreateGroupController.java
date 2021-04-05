@@ -6,9 +6,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
@@ -35,7 +37,8 @@ public class CreateGroupController extends AppCompatActivity {
 
     FirebaseAuth fAuth;
     ProgressBar progressBar;
-    Button InsBtn, createBtn;
+    Button  createBtn;
+    ImageButton InsBtn;
     EditText GroupName, GroupDesc;
     Spinner GroupCate;
     TextView admin_Id;
@@ -54,11 +57,11 @@ public class CreateGroupController extends AppCompatActivity {
         mStorgeRef=FirebaseStorage.getInstance().getReference("Images");
 
         progressBar = findViewById(R.id.progressBar2);
-        InsBtn = findViewById(R.id.ins_pic);
+       InsBtn = findViewById(R.id.ins_pic);
         createBtn = findViewById(R.id.createBtn);
         GroupDesc = findViewById(R.id.groupDescText);
         GroupName = findViewById(R.id.groupNameText);
-        admin_Id = findViewById(R.id.adminId);
+        admin_Id = findViewById(R.id.adminNameTxt);
         GroupCate = findViewById(R.id.groupCategroy);
         GroupPic=findViewById(R.id.ProfileImage);
 
@@ -69,9 +72,14 @@ public class CreateGroupController extends AppCompatActivity {
             create_group_method();
             upload_group_image();
         });
-        InsBtn.setOnClickListener(e->{
-            imageChooser();
+        InsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                imageChooser();
+            }
         });
+
+
 
 
     }
