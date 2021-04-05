@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.content.Intent;
 import android.nfc.Tag;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.view.Menu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.jam3naapp2021.ui.gallery.GalleryFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -33,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
     FirebaseAuth fAuth;
     private AppBarConfiguration mAppBarConfiguration;
     View logOut;
+    public Menu menue ;
     TextView username,useremail;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         logOut = findViewById(R.id.action_logout);
@@ -51,7 +53,6 @@ public class MainActivity extends AppCompatActivity {
 //        String getuseremail=fAuth.getCurrentUser().getEmail().toString();
 //        username.setText(""+getusername.trim());
 //        useremail.setText(""+getuseremail.trim());
-
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,7 +60,6 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-
 
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -78,6 +78,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main, menu);
+        menu.findItem(R.id.action_create).setVisible(false);
+        menue=menu;
+
         return true;
     }
 
@@ -91,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
 //            case R.id.profile:
 //                startActivity(new Intent(getApplicationContext(), profileController.class));
@@ -115,11 +119,14 @@ public class MainActivity extends AppCompatActivity {
 
                 return true;
             case R.id.action_create:
-                startActivity(new Intent(getApplicationContext(),CreateGroupController.class));
+//
+//                startActivity(new Intent(getApplicationContext(), .class));
+                Toast.makeText(this, "one hod dog", Toast.LENGTH_SHORT).show();
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
 
         }
     }
+
 }

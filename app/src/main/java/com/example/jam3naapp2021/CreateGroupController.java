@@ -60,7 +60,7 @@ public class CreateGroupController extends AppCompatActivity {
        InsBtn = findViewById(R.id.ins_pic);
         createBtn = findViewById(R.id.createBtn);
         GroupDesc = findViewById(R.id.groupDescText);
-        GroupName = findViewById(R.id.groupNameText);
+        GroupName = findViewById(R.id.ProfileNameText);
         admin_Id = findViewById(R.id.adminNameTxt);
         GroupCate = findViewById(R.id.groupCategroy);
         GroupPic=findViewById(R.id.ProfileImage);
@@ -184,28 +184,28 @@ public class CreateGroupController extends AppCompatActivity {
             }
         }
     }
-    @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
-//            case R.id.a:
-//                startActivity(new Intent(getApplicationContext(), profileController.class));
+//    @Override
+//    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+//        switch (item.getItemId()) {
+////            case R.id.a:
+////                startActivity(new Intent(getApplicationContext(), profileController.class));
+////                return true;
+//            case R.id.action_settings:
+//                Toast.makeText(this, " settings not ready yet !", Toast.LENGTH_SHORT).show();
 //                return true;
-            case R.id.action_settings:
-                Toast.makeText(this, " settings not ready yet !", Toast.LENGTH_SHORT).show();
-                return true;
-            case R.id.action_logout:
-                fAuth.getInstance().signOut();
-                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
-                return true;
-            case R.id.action_create:
-                startActivity(new Intent(getApplicationContext(), CreateGroupController.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-
-        }
-
-    }
+//            case R.id.action_logout:
+//                fAuth.getInstance().signOut();
+//                startActivity(new Intent(getApplicationContext(), LoginActivity.class));
+//                return true;
+//            case R.id.action_create:
+//                startActivity(new Intent(getApplicationContext(), CreateGroupController.class));
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//
+//        }
+//
+//    }
 
 
 }

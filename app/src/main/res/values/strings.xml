@@ -18,7 +18,7 @@
     <string name="menu_my_Profile" translatable="false">My Profile</string>
     <string name="menu_grup" translatable="false">Group</string>
     <string name="menu_friendlist">Friend List</string>
-<!--    <string name="menu_slideshow">Slideshow</string>-->
+
 
     <array name="spinnerItems">
         <item>Canoeing</item>

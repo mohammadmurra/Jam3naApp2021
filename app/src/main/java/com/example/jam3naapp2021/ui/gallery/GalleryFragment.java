@@ -1,9 +1,13 @@
 package com.example.jam3naapp2021.ui.gallery;
 
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -21,6 +25,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 
+import com.example.jam3naapp2021.CreateGroupController;
 import com.example.jam3naapp2021.LoginActivity;
 import com.example.jam3naapp2021.MainActivity;
 import com.example.jam3naapp2021.R;
@@ -42,12 +47,13 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
-public class GalleryFragment extends Fragment {
-    RadioGroup radioGroup ;
-    RadioButton gender;
-    EditText profileEmail,profilePhone,profileName , UserAge , UserHeight , UserWeight;
-    ImageView profileImageView;
+import java.util.concurrent.Executor;
 
+public class GalleryFragment extends Fragment {
+    TextView  gender;
+    TextView profileEmail,profilePhone,profileName , UserAge , UserHeight , UserWeight;
+    ImageView profileImageView;
+    String x;
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -61,23 +67,78 @@ public class GalleryFragment extends Fragment {
 //
 //
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-//        profileName = root.findViewById(R.id.UserName);
-//        profileEmail = root.findViewById(R.id.UserEmail);
-//        profilePhone = root.findViewById(R.id.userPhoneNumber);
-//        profileImageView = root.findViewById(R.id.imgUser);
-////        radioGroup=root.findViewById(R.id.gender);
-////        UserAge = root.findViewById(R.id.UserAge);
-//        UserHeight= root.findViewById(R.id.UserHeight);
-//        UserWeight = root.findViewById(R.id.UserWeight);
+        profileName = root.findViewById(R.id.ProfileNameText);
+        profileEmail = root.findViewById(R.id.profileEmil);
+        profilePhone = root.findViewById(R.id.profilePhone);
+        profileImageView = root.findViewById(R.id.profileImage);
+        // saveBtn = findViewById(R.id.saveProfileInfo);
+        gender=root.findViewById(R.id.profileGender);
+        UserAge = root.findViewById(R.id.birthDate);
+        UserHeight= root.findViewById(R.id.profileLength);
+        UserWeight = root.findViewById(R.id.profileWidgh);
+        fAuth = FirebaseAuth.getInstance();
+        fStore = FirebaseFirestore.getInstance();
+        visitorID = fAuth.getCurrentUser().getUid();
 
+
+        DocumentReference documentReference = fStore.collection("Visitor").document(fAuth.getCurrentUser().getUid());
+        Log.d("UID",visitorID);
+        documentReference.addSnapshotListener(getActivity(), new EventListener<DocumentSnapshot>() {
+            @Override
+            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
+
+                x = value.getString("fname") +""+ value.getString("lname");
+                profileName.setText(x);
+
+                profileEmail.setText(value.getString("Uemail"));
+                profilePhone.setText(value.getString("Uphone"));
+                gender.setText(value.getString("Ugender"));
+                UserAge.setText((CharSequence) value.getDate("dateOfBirth"));
+                UserHeight.setText(value.getString("Uheigt"));
+                UserWeight.setText(value.getString("uweight"));
+
+
+                //to store this data after user edit it
+
+            }
+        });
+
+
+        GoogleSignInAccount SignInAccount = GoogleSignIn.getLastSignedInAccount(getActivity());
+        if(SignInAccount != null){
+            x = SignInAccount.getDisplayName() +""+SignInAccount.getFamilyName();
+            profileName.setText(SignInAccount.getFamilyName());
+            profileEmail.setText(SignInAccount.getEmail());
+
+        }
 //
 //        fAuth = FirebaseAuth.getInstance();
-//      profileEmail.setText(""+fAuth.getCurrentUser().getEmail());
 //        profileName.setText(""+fAuth.getCurrentUser().getDisplayName());
 
 
         return root;
     }
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+//            case R.id.a:
+//                startActivity(new Intent(getApplicationContext(), profileController.class));
+//                return true;
+            case R.id.action_settings:
+                Toast.makeText(getActivity(), " settings not ready yet !", Toast.LENGTH_SHORT).show();
+                return true;
+            case R.id.action_logout:
+                fAuth.getInstance().signOut();
+                startActivity(new Intent(getContext(), LoginActivity.class));
+                return true;
+            case R.id.action_create:
+                startActivity(new Intent(getContext(), CreateGroupController.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
 
+        }
+
+    }
 
 }
