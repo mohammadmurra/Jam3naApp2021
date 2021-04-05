@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/gard2"
-    tools:context="com.halo.profileui.Activity_Main">
+    tools:context="com.example.jam3naapp2021.MainActivity">
 
     <RelativeLayout
         android:id="@+id/rellay1"
