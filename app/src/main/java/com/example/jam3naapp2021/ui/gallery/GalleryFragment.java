@@ -45,9 +45,9 @@ import com.google.firebase.storage.StorageReference;
 public class GalleryFragment extends Fragment {
     RadioGroup radioGroup ;
     RadioButton gender;
-    EditText profileFirstName,profileEmail,profilePhone,profileLastName , UserAge , UserHeight , UserWeight;
+    EditText profileEmail,profilePhone,profileName , UserAge , UserHeight , UserWeight;
     ImageView profileImageView;
-    Button saveBtn;
+
     FirebaseAuth fAuth;
     FirebaseFirestore fStore;
     FirebaseUser user;
@@ -61,55 +61,19 @@ public class GalleryFragment extends Fragment {
 //
 //
         View root = inflater.inflate(R.layout.fragment_gallery, container, false);
-//        profileFirstName = root.findViewById(R.id.profileFirstUsername);
-//        profileLastName = root.findViewById(R.id.profileLastUsername);
-//        profileEmail = root.findViewById(R.id.profileEmail);
-//        profilePhone = root.findViewById(R.id.profilePhoneNumber);
-//        profileImageView = root.findViewById(R.id.profileImageView);
-//        saveBtn = root.findViewById(R.id.saveProfileInfo);
-//        radioGroup=root.findViewById(R.id.gender);
-//        UserAge = root.findViewById(R.id.UserAge);
+//        profileName = root.findViewById(R.id.UserName);
+//        profileEmail = root.findViewById(R.id.UserEmail);
+//        profilePhone = root.findViewById(R.id.userPhoneNumber);
+//        profileImageView = root.findViewById(R.id.imgUser);
+////        radioGroup=root.findViewById(R.id.gender);
+////        UserAge = root.findViewById(R.id.UserAge);
 //        UserHeight= root.findViewById(R.id.UserHeight);
 //        UserWeight = root.findViewById(R.id.UserWeight);
 
-
-        fAuth = FirebaseAuth.getInstance();
-        fStore = FirebaseFirestore.getInstance();
-        visitorID = fAuth.getCurrentUser().getUid();
-//        StorageReference mImageStorage = FirebaseStorage.getInstance().getReference();
-//        Log.d("referance",mImageStorage.getBucket());
-//        StorageReference ref = mImageStorage.child("gs://jam3naapp2021.appspot.com")
-//                .child("/Users/UsersProfilePictures/test@test.com1617502861919.png");
-//        ref.getDownloadUrl().addOnCompleteListener(new OnCompleteListener<Uri>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Uri> task) {
-//                if (task.isSuccessful()) {
-//                    Uri downUri = task.getResult();
-//                    String imageUrl = downUri.toString();
 //
-//
-//                    profileImageView.setImageURI(downUri);
-//
-//                }else{
-//
-//                }
-//            }
-//        });
-
-//        DocumentReference documentReference = fStore.collection("Visitor").document(visitorID);
-//        documentReference.addSnapshotListener( new EventListener<DocumentSnapshot>() {
-//            @Override
-//            public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
-//
-//                profileFirstName.setText(value.getString("fname"));
-//                profileLastName.setText(value.getString("lname"));
-//                profileEmail.setText(value.getString("Uemail"));
-//                profilePhone.setText(value.getString("Uphone"));
-//
-//                //to store this data after user edit it
-//
-//            }
-//        });
+//        fAuth = FirebaseAuth.getInstance();
+//      profileEmail.setText(""+fAuth.getCurrentUser().getEmail());
+//        profileName.setText(""+fAuth.getCurrentUser().getDisplayName());
 
 
         return root;
