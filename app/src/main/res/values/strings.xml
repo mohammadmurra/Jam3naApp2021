@@ -19,6 +19,8 @@
     <string name="menu_grup" translatable="false">Group</string>
     <string name="menu_friendlist">Friend List</string>
 
+    <!--    <string name="menu_slideshow">Slideshow</string>-->
+
 
     <array name="spinnerItems">
         <item>Canoeing</item>
@@ -42,5 +44,10 @@
         <item>Volleyball</item>
         <item>Skateboarding</item>
     </array>
-    <string name="btnRegister">Singup</string>
+    <string name="btnRegister" translatable="false">Singup</string>
+    <string name="toolbar_profile">Profile</string>
+    <string name="posts">POSTS</string>
+    <string name="followers">FOLLOWERS</string>
+    <string name="following">FOLLOWING</string>
+
 </resources>

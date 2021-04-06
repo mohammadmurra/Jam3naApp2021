@@ -19,4 +19,8 @@
     <color name="followersBg">#1B4D97</color>
     <color name="followingBg">#265EB1</color>
     <color name="grey">#2F7092</color>
+    <color name="colorPrimary">#222222</color>
+    <color name="colorPrimaryDark">#111111</color>
+    <color name="colorAccent">#fecb2f</color>
+    <color name="profile_meta">#333</color>
 </resources>

@@ -8,6 +8,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.TextView;
 import android.view.Menu;
 import android.widget.Toast;
@@ -27,21 +28,30 @@ import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.example.jam3naapp2021.MainActivity;
+import com.example.jam3naapp2021.R;
+import com.example.jam3naapp2021.ui.gallery.GalleryFragment;
 
 public class GroupFragment extends Fragment {
 
     private GroupViewModel groupViewModel;
  Menu menu;
+    ImageButton gogroup;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
 
 
         View root = inflater.inflate(R.layout.fragment_group, container, false);
 
-        final TextView textView = root.findViewById(R.id.text_group);
+        gogroup=root.findViewById(R.id.Groupgo);
 
+        gogroup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getActivity(), GroupModule.class));
+            }
+        });
 
 
         return root;
@@ -61,5 +71,7 @@ public class GroupFragment extends Fragment {
                 return true;
             }
         });
-    }
-}
+
+
+
+}}
