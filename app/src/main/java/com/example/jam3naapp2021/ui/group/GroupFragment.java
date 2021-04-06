@@ -31,7 +31,7 @@ ImageButton gogroup;
        gogroup.setOnClickListener(new View.OnClickListener() {
            @Override
            public void onClick(View v) {
-               startActivity(new Intent(getActivity(), MainActivity.class));
+               startActivity(new Intent(getActivity(), GroupModule.class));
            }
        });
         return root;
